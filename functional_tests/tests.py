@@ -54,10 +54,8 @@ class NewVisitorTest(LiveServerTestCase):
         # The page updates aagain, and now shows both items on her list
         self.check_for_row_in_list_table('1: Buy peacock feathers')
         self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
-        
-        # Now a new user, Francis, come along to the site.
-        self.browser.quit()
-        self.browser = webdriver.Firefox()
+                
+        self.browser.close()
         
         # Francis visits the home page.  There is no sign of Edith's list
         self.browser.get(self.live_server_url)
@@ -67,11 +65,6 @@ class NewVisitorTest(LiveServerTestCase):
         
         # Francis starts a new list by entering a new item.
         # He is less interesting than Edith...
-        inputbox.send_keys('Buy peacock feathers')
-
-        # When she hits enter, she is taken to a new URL
-        # and the page lists
-        # "1: Buy peacock feathers" as an item in a to-do list
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy Milk')
         inputbox.send_keys(Keys.ENTER)
@@ -79,7 +72,7 @@ class NewVisitorTest(LiveServerTestCase):
         # Francis gets his own URL
         francis_list_url = self.browser.current_url
         self.assertRegexpMatches(francis_list_url, '/lists/.+')
-        self.assertNotEqual(francis_list_url, edit_list_url)
+        self.assertNotEqual(francis_list_url, edith_list_url)
         
         # again, there is no trace of Edith's list
         page_text = self.browser.find_element_by_tag_name('body').text
