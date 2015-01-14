@@ -81,12 +81,6 @@ class NewVisitorTest(LiveServerTestCase):
         # Francis' items are there
         self.assertIn('Buy Milk', page_text)
         
-        
-        
-        
-        self.fail('Finish the test!')
-        
-        
         # Edith wonders whether the site will remember her list.  The she sees
         # that the site has generated a unique URL for her -- there is some 
         # explanatory text to that effect
