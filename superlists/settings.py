@@ -20,11 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'reycnv(ee8%5*zso$n8ywc2rc_x+06)5)ra*-d2x_y^6r%2+x_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-54-191-108-220.us-west-2.compute.amazonaws.com']
 
 
 # Application definition
