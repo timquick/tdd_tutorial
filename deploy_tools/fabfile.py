@@ -2,10 +2,13 @@ from fabric.contrib.files import append, exists, sed
 from fabric.api import env, local, run
 import random
 
+env.key_filename = '~/developmentKeys.pem'
+env.host_string ='ubuntu@ec2-54-191-108-220.us-west-2.compute.amazonaws.com'
+
 REPO_URL = 'https://github.com/timquick/tdd_tutorial.git'
 
 def deploy():
-    site_folder = '/Users/%s/sites/%s' % ( env.user, env.host)
+    site_folder = '/home/%s/sites/%s' % ( env.user, env.host)
     source_folder = site_folder + '/source'
     _create_directory_structure_if_necessary(site_folder)
     _get_latest_source(source_folder)
