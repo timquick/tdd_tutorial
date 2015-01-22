@@ -2,7 +2,7 @@ from fabric.contrib.files import append, exists, sed
 from fabric.api import env, local, run
 import random
 
-REPO_URL = 'git@github.com:timquick/tdd_tutorial.git'
+REPO_URL = 'https://github.com/timquick/tdd_tutorial.git'
 
 def deploy():
     site_folder = '/Users/%s/sites/%s' % ( env.user, env.host)
@@ -19,7 +19,7 @@ def _create_directory_structure_if_necessary(site_folder):
         run('mkdir -p %s/%s' % (site_folder, subfolder))
         
 def _get_latest_source(source_folder):
-    if exists(source_folder +'.git'):
+    if exists(source_folder +'/.git'):
         run('cd %s && git fetch' % (source_folder,))
     else:
         run('git clone %s %s' % (REPO_URL, source_folder))
@@ -30,7 +30,7 @@ def _update_settings(source_folder, site_name):
     settings_path = source_folder + '/superlists/settings.py'
     sed(settings_path, "DEBUG = True", "DEBUG = False")
     sed(settings_path,
-        'ALLOWED_HOSTS = .+$'
+        'ALLOWED_HOSTS = .+$',
         'ALLOWED_HOSTS = ["%s"]' % (site_name,))
     secret_key_file = source_folder + '/superlists/secret_key.py'
     if not exists(secret_key_file):
