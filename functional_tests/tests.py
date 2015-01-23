@@ -9,7 +9,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         for arg in sys.argv:
             if 'liveserver' in arg:
-                cls.server_url = 'http://' + arg.split('=')[1]
+                cls.server_url = arg.split('=')[1]
                 return
         super().setUpClass()
         cls.server_url = cls.live_server_url
@@ -20,7 +20,8 @@ class NewVisitorTest(StaticLiveServerTestCase):
             super().tearDownClass()
     
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        #self.browser = webdriver.Firefox()
+        self.browser = webdriver.PhantomJS()
         self.browser.implicitly_wait(5)
         
     def tearDown(self):
@@ -92,7 +93,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.check_for_row_in_list_table('1: Buy peacock feathers')
         self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
                 
-        self.browser.close()
+        #self.browser.close()
         
         # Francis visits the home page.  There is no sign of Edith's list
         self.browser.get(self.server_url)

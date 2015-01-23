@@ -17,14 +17,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'reycnv(ee8%5*zso$n8ywc2rc_x+06)5)ra*-d2x_y^6r%2+x_'
+SECRET_KEY = 'reycnv(ee8%5*zso$n8ywc2rc_x+06)5)ra*-d2x_y^6r%2+x_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-54-191-108-220.us-west-2.compute.amazonaws.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

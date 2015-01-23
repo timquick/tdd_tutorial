@@ -4,6 +4,8 @@ import random
 
 env.key_filename = '~/developmentKeys.pem'
 env.host_string ='ubuntu@ec2-54-191-108-220.us-west-2.compute.amazonaws.com'
+env.host = 'ec2-54-191-108-220.us-west-2.compute.amazonaws.com'
+env.user = 'ubuntu'
 
 REPO_URL = 'https://github.com/timquick/tdd_tutorial.git'
 
