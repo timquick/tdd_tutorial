@@ -18,6 +18,7 @@ def deploy():
     _update_virtualenv(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
+    _restart_appserver(env.host)
     
 def _create_directory_structure_if_necessary(site_folder):
     for subfolder in ('database', 'static', 'virtualenv', 'source'):
@@ -59,6 +60,12 @@ def _update_database(source_folder):
     run('cd %s && ../virtualenv/bin/python3 manage.py migrate --noinput' % (
         source_folder,
     ))
+    
+def _restart_appserver(site_name):
+    run('sudo restart gunicorn-%s' % (
+        site_name,
+    ))
+    
     
 
     
