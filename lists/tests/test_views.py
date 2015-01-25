@@ -93,9 +93,6 @@ class ListViewTest(TestCase):
         response = self.post_invalid_input()
         self.assertContains(response, escape(EMPTY_ITEM_ERROR))
         
-    def test_get_absolute_url(self):
-        list_ = List.objects.create()
-        self.assertEqual(list_.get_absolute_url(), '/lists/%d/' % (list_.id,))
         
     def test_displays_item_form(self):
         list_ = List.objects.create()
