@@ -1,4 +1,5 @@
 from selenium import webdriver
+from pyvirtualdisplay import Display
 from selenium.webdriver.support.ui import WebDriverWait
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from .server_tools import reset_database
@@ -27,6 +28,8 @@ class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
         if self.against_staging:
             reset_database(self.server_host)
+        self.display = Display(visible=0, size=(1280, 1024))
+        self.display.start()
         self.browser = webdriver.Firefox()
         #self.browser = webdriver.PhantomJS()
         #self.browser = webdriver.Chrome()
@@ -34,6 +37,7 @@ class FunctionalTest(StaticLiveServerTestCase):
         
     def tearDown(self):
         self.browser.quit()
+        self.display.stop()
         
     def check_for_row_in_list_table(self, row_text):
         table = self.browser.find_element_by_id('id_list_table')
