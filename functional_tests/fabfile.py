@@ -1,4 +1,9 @@
 from fabric.api import env, run
+env.key_filename = '~/developmentKeys.pem'
+env.host_string ='ubuntu@ec2-54-191-108-220.us-west-2.compute.amazonaws.com'
+env.host = 'ec2-54-191-108-220.us-west-2.compute.amazonaws.com'
+env.user = 'ubuntu'
+
 
 def _get_base_folder(host):
     return '~/sites/' + host

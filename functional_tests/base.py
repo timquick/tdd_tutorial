@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from .server_tools import reset_database
 import sys
 
 class FunctionalTest(StaticLiveServerTestCase):
@@ -10,7 +11,8 @@ class FunctionalTest(StaticLiveServerTestCase):
         cls.server_url = 'https://tdd-tutorial-timquick-1.c9.io/'
         for arg in sys.argv:
             if 'liveserver' in arg:
-                cls.server_url = arg.split('=')[1]
+                cls.server_host = arg.split('=')[1]
+                cls.server_url =  'http://' + cls.server_host
                 cls.against_staging = True
                 return
         super().setUpClass()
