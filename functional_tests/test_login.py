@@ -1,6 +1,7 @@
 from .base import FunctionalTest
-from selenium.webdriver.support.ui import WebDriverWait
 import time
+
+TEST_EMAIL = 'edith@mockmyid.com'
 
 class LoginTest(FunctionalTest):
     
@@ -15,11 +16,6 @@ class LoginTest(FunctionalTest):
             time.sleep(0.5)
         self.fail('could not find window')
         
-    def wait_for_element_with_id(self, element_id):
-        WebDriverWait(self.browser, timeout=30).until(
-            lambda b: b.find_element_by_id(element_id)
-        )
-    
     def test_login_with_persona(self):
         # Edith goes to the awesom superlists site
         # and notices a "Sign In" link for the first time.
@@ -33,14 +29,12 @@ class LoginTest(FunctionalTest):
         ## use mockmyid.com for test email
         self.browser.find_element_by_id(
             'authentication_email'
-        ).send_keys('edith@mockmyid.com')
+        ).send_keys(TEST_EMAIL)
         self.browser.find_element_by_tag_name('button').click()
         
         # The Persona window closes
         self.switch_to_new_window('To-Do')
         
         # She can see that she's logged in
-        self.wait_for_element_with_id('id_logout')
-        navbar = self.browser.find_element_by_css_selector('.navbar')
-        self.assertIn('edith@mockmyid.com',navbar.text)
+        self.wait_to_be_logged_in(email=TEST_EMAIL)
         
