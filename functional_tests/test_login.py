@@ -37,4 +37,3 @@ class LoginTest(FunctionalTest):
         
         # She can see that she's logged in
         self.wait_to_be_logged_in(email=TEST_EMAIL)
-        

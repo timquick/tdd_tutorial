@@ -3,3 +3,4 @@ db.sqlite3
 .c9*
 .DS_Store
 *.log
+functional_tests/screendumps
